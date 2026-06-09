@@ -423,6 +423,8 @@ init_sco_cons()
 
 
 #if defined(__linux__) && !defined(UNICODE)		/* via Jesse Thilo and Ben Gertzfield */
+# include <sys/ioctl.h>
+extern int tigetnum(const char *);
 # include <sys/vt.h>
 
 int linux_flag_console = 0;

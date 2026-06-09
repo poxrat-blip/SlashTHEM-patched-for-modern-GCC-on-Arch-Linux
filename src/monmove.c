@@ -8,6 +8,7 @@
 #include "epri.h"
 
 extern boolean notonhead;
+extern int FDECL(meatlithic, (struct monst *));
 
 #ifdef OVL0
 

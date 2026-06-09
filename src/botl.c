@@ -1,6 +1,5 @@
-/*	SCCS Id: @(#)botl.c	3.4	1996/07/15	*/
-/* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
-/* NetHack may be freely redistributed.  See license for details. */
+
+/* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985./* NetHack may be freely redistributed.  See license for details. */
 
 #include "hack.h"
 
@@ -801,7 +800,7 @@ unsigned int len;
 }
 #endif /* TTY_GRAPHICS */
 
-static void (*raw_handler)();
+static void (*raw_handler)(int,int, const char **) = NULL ;
 
 static void bot_raw(reconfig)
 boolean reconfig;
@@ -873,7 +872,13 @@ boolean reconfig;
 	(Stunned ? RAW_STAT_STUNNED : 0) |
 	(Hallucination ? RAW_STAT_HALLUCINATION : 0) |
 	(Slimed ? RAW_STAT_SLIMED : 0)), flgs);
-    (*raw_handler)(reconfig, rv - botl_raw_values, botl_raw_values);
+
+if (!raw_handler) {
+    fprintf(stderr, "BOTL: raw_handler is NULL!\n");
+    return;
+}    
+
+(*raw_handler)(reconfig, rv - botl_raw_values, botl_raw_values);
 }
 
 void bot_reconfig()
@@ -885,7 +890,7 @@ void bot_reconfig()
 
 void
 bot_set_handler(handler)
-void (*handler)();
+void (*handler)(int a, int b, const char **);
 {
     raw_handler = handler;
     bot_reconfig();

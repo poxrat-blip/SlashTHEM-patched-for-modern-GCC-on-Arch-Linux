@@ -3332,14 +3332,14 @@ uchar aatyp;
 
 		/* darken your surroundings --Amy */
 		pline("A maleficient darkness comes over you.");
-		litroomlite(FALSE);
+		litroom(FALSE, NULL);
 
 		break;
 	  case AD_TLPT:
 
 		    if(flags.verbose)
 			Your("position suddenly seems very uncertain!");
-		    teleX();
+		    tele();
 		break;
 	  case AD_DRIN:
 	    if(!rn2(10)) {

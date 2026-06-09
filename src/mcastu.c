@@ -1077,7 +1077,7 @@ int spellnum;
 		break;
 	case 38:
 	      pline("You feel burdened"); /* punishment - message is from Castle of the Winds */
-			punishx();
+			punish((struct obj *)0);
 		dmg = 0;
 		break;
 	default: /*failsafe*/

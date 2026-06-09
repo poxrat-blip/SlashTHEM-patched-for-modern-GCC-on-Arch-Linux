@@ -35,6 +35,8 @@ STATIC_DCL void FDECL(hitmsg,(struct monst *,struct attack *));
 /* changed to a parameter to mhitu. */
 static int dieroll;
 
+extern void NDECL(maybe_wail);
+
 #ifdef OVL1
 
 STATIC_OVL void
@@ -1791,7 +1793,7 @@ hitmu(mtmp, mattk)
 
 		/* create darkness around the player --Amy */
 		pline("That felt evil and sinister!");
-			litroomlite(FALSE);
+			litroom(FALSE, NULL);
 		break;
 	    case AD_FIRE:
 		hitmsg(mtmp, mattk);
@@ -2313,7 +2315,7 @@ dopois:
 		if (uncancelled) {
 		    if(flags.verbose)
 			Your("position suddenly seems very uncertain!");
-		    teleX();
+		    tele();
 		}
 		break;
 	    case AD_RUST:
@@ -2921,7 +2923,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			pline("You feel a constricting darkness...");
 
 			/* create darkness around the player --Amy */
-			litroomlite(FALSE);
+			litroom(FALSE, NULL);
 			break;
 
 	    case AD_LEGS:
@@ -3007,7 +3009,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 	    case AD_TLPT:
 		    if(flags.verbose)
 			pline("You are teleported away!");
-		    teleX();
+		    tele();
 			pline("A stream of energy irradiates you!");
 		break;
 
@@ -3684,7 +3686,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 		/* create darkness around the player --Amy */
 		pline("%s's sinister gaze fills your mind with dreadful, evil thoughts!", Monnam(mtmp));
-		litroomlite(FALSE);
+		litroom(FALSE, NULL);
 		}
 		break;
 
@@ -4141,7 +4143,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	                pline("%s stares blinkingly at you!", Monnam(mtmp));
 	                if(flags.verbose)
 	                        Your("position suddenly seems very uncertain!");
-	                teleX();
+	                tele();
 		}
 		break;
 	    default: /*impossible*/pline("Gaze attack %d?", mattk->adtyp);

@@ -376,7 +376,7 @@ dosit()
 		    case 16:
 			pline("A voice echoes:");
 			verbalize("Thou shall be punished!");
-			punishx();
+			punish((struct obj *)0);
 			break;
 		    default:	impossible("throne effect");
 				break;

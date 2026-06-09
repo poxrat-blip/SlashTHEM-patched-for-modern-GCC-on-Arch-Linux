@@ -9,6 +9,8 @@
 #define DEVOUT 14
 #define STRIDENT 4
 
+extern void FDECL(use_floppies, (struct obj *));
+
 
 #define Your_Own_Role(mndx) \
 	((mndx) == urole.malenum || \

@@ -406,17 +406,17 @@ register boolean special;
 	    quan = rnd(3);
 	    while(quan--) {
 		(void)mongets(mtmp, rnd_offensive_item(mtmp));
-		if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		if (!rn2(100)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
 		}
 	    quan = rnd(3);
 	    while(quan--) {
 		(void)mongets(mtmp, rnd_defensive_item(mtmp));
-	      if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+	      if (!rn2(100)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
 		}
 	    quan = rnd(3);
 	    while(quan--) {
 		(void)mongets(mtmp, rnd_misc_item(mtmp));
-		if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		if (!rn2(100)) (void) mongets(mtmp, rnd_misc_item(mtmp));
 		}
 	}
 

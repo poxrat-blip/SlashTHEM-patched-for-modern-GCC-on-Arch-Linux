@@ -2326,7 +2326,7 @@ register struct obj *obj;
 		case WAN_MAGIC_MAPPING:
 			known = TRUE;
 			pline("You grasp some bits from the current map!");
-			do_mappingX();
+			do_mapping();
 			break;
 		case WAN_ENTRAPPING:
 			known = TRUE;
@@ -2354,7 +2354,7 @@ register struct obj *obj;
 		case WAN_PUNISHMENT:
 			known = TRUE;
 			You_feel("someone is punishing you for your misbehavior!");
-			punishx();
+			punish((struct obj *)0);
 			break;
 		case WAN_CHARGING:
 			known = TRUE;
@@ -2368,7 +2368,7 @@ register struct obj *obj;
 			known = TRUE;
 			switch(rnd(21)) {
 			case 1 : 
-				litroomlite(TRUE);
+				litroom(TRUE, NULL);
 				break;
 			case 2 : 
 				if(!findit()) return;
@@ -2442,7 +2442,7 @@ register struct obj *obj;
 				break;
 			case 13 : 
 				You_feel("someone is punishing you for your misbehavior!");
-				punishx();
+				punish((struct obj *)0);
 				break;
 			case 14 : 
 			case 15 : 

@@ -210,7 +210,8 @@ const char *mesg;
 
 #if defined(SIGWINCH) && defined(CLIPPING)
 STATIC_OVL void
-winch()
+winch(sig)
+int sig;
 {
     int oldLI = LI, oldCO = CO, i;
     register struct WinDesc *cw;
@@ -2715,9 +2716,9 @@ tty_print_glyph(window, x, y, glyph)
 #ifdef TEXTCOLOR
     if (!reverse_on && (special & (MG_STAIRS|MG_OBJPILE))) {
 	    if ((special & MG_STAIRS) && iflags.hilite_hidden_stairs)
-		    term_start_bgcolor(CLR_RED);
+		    term_start_color(CLR_RED);
 	    else if ((special & MG_OBJPILE) && iflags.hilite_obj_piles)
-		    term_start_bgcolor(CLR_BLUE);
+		    term_start_color(CLR_BLUE);
     }
 #endif
 
@@ -2748,7 +2749,7 @@ tty_print_glyph(window, x, y, glyph)
 
 #ifdef TEXTCOLOR
     if (!reverse_on && (special & (MG_STAIRS|MG_OBJPILE))) {
-	    term_end_bgcolor();
+	    term_end_color();
 	    term_end_color();
     }
 #endif

@@ -1531,49 +1531,6 @@ rnd_defensive_item(mtmp)
 struct monst *mtmp;
 {
 	struct permonst *pm = mtmp->data;
-	int difficulty = monstr[(monsndx(pm))];
-	int trycnt = 0;
-
-	if(is_animal(pm) || attacktype(pm, AT_EXPL) || mindless(mtmp->data)
-			|| pm->mlet == S_GHOST
-# ifdef KOPS
-			|| pm->mlet == S_KOP
-# endif
-		) return 0;
-    try_again:
-	switch (rn2(8 + (difficulty > 3) + (difficulty > 6) +
-				(difficulty > 8))) {
-		case 6: case 9:
-			if (level.flags.noteleport && ++trycnt < 2)
-			    goto try_again;
-			if (!rn2(3)) return WAN_TELEPORTATION;
-			/* else FALLTHRU */
-		case 0: case 1:
-			return SCR_TELEPORTATION;
-		case 8: case 10:
-			if (!rn2(3)) return WAN_CREATE_MONSTER;
-			/* else FALLTHRU */
-		case 2: return SCR_CREATE_MONSTER;
-		case 3: return POT_HEALING;
-		case 4: return POT_EXTRA_HEALING;
-		case 5: return (mtmp->data != &mons[PM_PESTILENCE]) ?
-				POT_FULL_HEALING : POT_SICKNESS;
-		case 7: if (is_floater(pm) || mtmp->isshk || mtmp->isgd
-						|| mtmp->ispriest
-									)
-				return 0;
-			else
-				return WAN_DIGGING;
-	}
-	/*NOTREACHED*/
-	return 0;
-}
-
-int
-rnd_defensive_item_new(mtmp)
-struct monst *mtmp;
-{
-	struct permonst *pm = mtmp->data;
 
 	if(is_animal(pm) || attacktype(pm, AT_EXPL) || mindless(mtmp->data)
 			|| pm->mlet == S_GHOST
@@ -2700,46 +2657,6 @@ rnd_offensive_item(mtmp)
 struct monst *mtmp;
 {
 	struct permonst *pm = mtmp->data;
-	int difficulty = monstr[(monsndx(pm))];
-
-	if(is_animal(pm) || attacktype(pm, AT_EXPL) || mindless(mtmp->data)
-			|| pm->mlet == S_GHOST
-# ifdef KOPS
-			|| pm->mlet == S_KOP
-# endif
-		) return 0;
-	if (difficulty > 7 && !rn2(350)) return WAN_DEATH;
-	if (difficulty > 6 && !rn2(125)) return WAN_FIREBALL;
-	switch (rn2(9 - (difficulty < 4) + 4 * (difficulty > 6))) {
-
-		case 0: {
-		    struct obj *helmet = which_armor(mtmp, W_ARMH);
-
-		    if ((helmet && is_metallic(helmet)) || amorphous(pm) || passes_walls(pm) || noncorporeal(pm) || unsolid(pm))
-			return SCR_EARTH;
-		} /* fall through */
-		case 1: return WAN_STRIKING;
-		case 2: return POT_ACID;
-		case 3: return POT_CONFUSION;
-		case 4: return POT_BLINDNESS;
-		case 5: return POT_SLEEPING;
-		case 6: return POT_PARALYSIS;
-		case 7: return WAN_MAGIC_MISSILE;
-		case 8: return WAN_SLEEP;
-		case 9: return WAN_FIRE;
-		case 10: return WAN_COLD;
-		case 11: return WAN_LIGHTNING;
-		case 12: return WAN_DRAINING;
-	}
-	/*NOTREACHED*/
-	return 0;
-}
-
-int
-rnd_offensive_item_new(mtmp)
-struct monst *mtmp;
-{
-	struct permonst *pm = mtmp->data;
 
 	if(is_animal(pm) || attacktype(pm, AT_EXPL) || mindless(mtmp->data)
 			|| pm->mlet == S_GHOST
@@ -3186,42 +3103,6 @@ struct monst *mtmp;
 
 int
 rnd_misc_item(mtmp)
-struct monst *mtmp;
-{
-	struct permonst *pm = mtmp->data;
-	int difficulty = monstr[(monsndx(pm))];
-
-	if(is_animal(pm) || attacktype(pm, AT_EXPL) || mindless(mtmp->data)
-			|| pm->mlet == S_GHOST
-# ifdef KOPS
-			|| pm->mlet == S_KOP
-# endif
-		) return 0;
-	/* Unlike other rnd_item functions, we only allow _weak_ monsters
-	 * to have this item; after all, the item will be used to strengthen
-	 * the monster and strong monsters won't use it at all...
-	 */
-	if (difficulty < 6 && !rn2(30))
-	    return rn2(6) ? POT_POLYMORPH : WAN_POLYMORPH;
-
-	if (!rn2(40) && !nonliving(pm)) return AMULET_OF_LIFE_SAVING;
-
-	switch (rn2(3)) {
-		case 0:
-			if (mtmp->isgd) return 0;
-			return rn2(6) ? POT_SPEED : WAN_SPEED_MONSTER;
-		case 1:
-			if (mtmp->mpeaceful && !See_invisible) return 0;
-			return rn2(6) ? POT_INVISIBILITY : WAN_MAKE_INVISIBLE;
-		case 2:
-			return POT_GAIN_LEVEL;
-	}
-	/*NOTREACHED*/
-	return 0;
-}
-
-int
-rnd_misc_item_new(mtmp)
 struct monst *mtmp;
 {
 	struct permonst *pm = mtmp->data;

@@ -671,8 +671,8 @@ aligntyp resp_god;
 	    case 10:	/* new possible outcomes if your god is extraordinarily angry --Amy */
 			    godvoice(resp_god,(char *)0);
 				verbalize("Thou dost need penance!");
-			    punishx();
-			    punishx();
+			    punish((struct obj *)0);
+			    punish((struct obj *)0);
 			    break;
 	    case 11:	
 	    case 12:	

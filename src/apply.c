@@ -261,9 +261,9 @@ use_stethoscope(obj)
 		} else
 
 			if (obj->blessed)
-			mstatuslinebl(u.usteed); /* make blessed one better than uncursed --Amy */
+		     mstatusline(u.usteed); /* make blessed one better than uncursed --Amy */
 			else
-			mstatusline(u.usteed);
+		     mstatusline(u.usteed);
 
 
 		return res;
