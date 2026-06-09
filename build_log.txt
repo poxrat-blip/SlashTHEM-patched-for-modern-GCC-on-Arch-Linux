@@ -1,5 +1,0 @@
-( cd src ; make )
-make[1]: вход в каталог «/home/nazariydarat/SlashTHEM/src»
-Loading ...
-slashthem is up to date.
-make[1]: выход из каталога «/home/nazariydarat/SlashTHEM/src»
