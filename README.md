@@ -33,8 +33,8 @@ sudo pacman -S base-devel ncurses
 ## Build & Install
 
 ```bash
-git clone https://github.com/poxrat-blip/SlashTHEM.git
-cd SlashTHEM
+git clone https://github.com/poxrat-blip/SlashTHEM-patched-for-modern-GCC-on-Arch-Linux.git
+cd SlashTHEM-patched-for-modern-GCC-on-Arch-Linux 
 chmod +x install.sh
 ./install.sh
 ```
@@ -66,7 +66,7 @@ slashthem
 - Slash'EM — Slash'EM Dev Team
 - Slash'EM Extended — AmyBSOD
 - SlashTHEM — Soviet5lo
-- Modern GCC patches — Ratatouille
+- Modern GCC patches — Poxrat(Nazariy)
 
 ## License
 
